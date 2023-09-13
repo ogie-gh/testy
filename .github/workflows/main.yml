@@ -7,5 +7,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       -uses: actions/checkout@v3
-      -name: run a one line script:
+      -name: run a one line script
       run: echo Hello, World!
