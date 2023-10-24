@@ -9,5 +9,5 @@ jobs:
       - name: Generate Data
         run: |
           mkdir upload
-          echo "test data" >> 'upload/TEST_data.csv'
-          cat upload/Test_data.csv
+          echo "test data" >> upload/TEST_data.csv
+          cat upload/TEST_data.csv
