@@ -7,6 +7,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate Data
-        run: echo "test data" >> 'upload/TEST_data.csv'
-      - name: Check data
-        run: cat upload/Test_data.csv
+        run: |
+          mkdir upload
+          echo "test data" >> 'upload/TEST_data.csv'
+          cat upload/Test_data.csv
