@@ -1,0 +1,12 @@
+name: Test Data
+on:
+  workflow_dispatch:
+
+jobs:
+  generate-data:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Generate Data
+        run: echo "test data" >> 'upload/TEST_data.csv'
+      - name: Check data
+        run: cat upload/Test_data.csv
