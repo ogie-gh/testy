@@ -1,0 +1,36 @@
+name: Matrix output test
+
+on:
+  workflow_dispatch:
+    inputs:
+      Accounts:
+        description: 'List of accounts'
+        required: false
+        default: '["123456789", "234972524", 9877654432"]'
+
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    strategy:
+      matrix: ${{ fromJSON(github.event.inputs.Accounts) }}
+    steps:
+      - name: run script
+        shell: bash
+        run: |
+          if [ ${{ matrix.accounts }} == '123456789' ]
+            then
+              envname='test1'
+          fi
+          if [ ${{ matrix.accounts }} == '123456789' ]
+            then
+              envname='test2'
+          fi
+          if [ ${{ matrix.accounts }} == '123456789' ]
+            then
+              envname='test3'
+          fi
+          echo "${envname}"
+      
+      
