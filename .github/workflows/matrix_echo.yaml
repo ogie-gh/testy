@@ -14,7 +14,8 @@ jobs:
     name: Deploy
     runs-on: ubuntu-latest
     strategy:
-      matrix: ${{ fromJSON(github.event.inputs.Accounts) }}
+      matrix: 
+        accounts: ${{ fromJSON(github.event.inputs.Accounts) }}
     steps:
       - name: run script
         shell: bash
@@ -23,11 +24,11 @@ jobs:
             then
               envname='test1'
           fi
-          if [ ${{ matrix.accounts }} == '123456789' ]
+          if [ ${{ matrix.accounts }} == '234972524' ]
             then
               envname='test2'
           fi
-          if [ ${{ matrix.accounts }} == '123456789' ]
+          if [ ${{ matrix.accounts }} == '9877654432']
             then
               envname='test3'
           fi
