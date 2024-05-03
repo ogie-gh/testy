@@ -6,7 +6,7 @@ on:
       Accounts:
         description: 'List of accounts'
         required: false
-        default: '["123456789", "234972524", 9877654432"]'
+        default: '["123456789", "234972524", "9877654432"]'
 
 
 jobs:
