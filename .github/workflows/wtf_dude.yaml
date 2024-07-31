@@ -27,7 +27,7 @@ jobs:
           echo "is_production=${is_production}" >> $GITHUB_ENV
           
           [ "${{ inputs.NoExec }}" == "true" ] && noexecchangset=--no-execute-changeset || noexecchangset=
-          echo "noexecchangset${noexecchangset}" >> $GITHUB_ENV
+          echo "noexecchangset=${noexecchangset}" >> $GITHUB_ENV
 
       - name: echo outputs
         run: |
