@@ -1,0 +1,26 @@
+name: WTFuonAboot
+on:
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description: 'Enviroment to deploy to'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  test:
+    name: test job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Environment variable
+        run: |
+          if [ "${{ inputs.Environment }}" == "production" && is_production=true || is_production = false
+          echo "is_production=${is_production}" >> $GITHUB_ENV
+
+      - name: echo outputs
+        run: |
+          echo ${is_production}
+          echo "${{ inputs.Environemnt }}"
