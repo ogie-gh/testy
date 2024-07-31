@@ -22,5 +22,5 @@ jobs:
 
       - name: echo outputs
         run: |
-          echo ${is_production}
-          echo "${{ inputs.Environemnt }}"
+          echo ${{ env.is_production}}
+          echo "${{ inputs.Environment }}"
