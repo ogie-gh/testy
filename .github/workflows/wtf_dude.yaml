@@ -12,10 +12,9 @@ on:
       NoExec:
         description: 'True to not execute changeset'
         type: choice
-          options:
-            - true
-            - false
-        default: 'true'
+        options:
+          - 'true'
+          - 'false'
 
 jobs:
   test:
