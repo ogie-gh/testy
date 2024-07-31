@@ -17,7 +17,7 @@ jobs:
     steps:
       - name: Set Environment variable
         run: |
-          [ "${{ inputs.Environment }}" == "production" ] && is_production=true || is_production = false
+          [ "${{ inputs.Environment }}" == "production" ] && is_production=true || is_production=false
           echo "is_production=${is_production}" >> $GITHUB_ENV
 
       - name: echo outputs
