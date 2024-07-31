@@ -9,24 +9,25 @@ on:
           - development
           - staging
           - production
-      NoExec:
+      NoExecute:
         description: 'True to not execute changeset'
-        type: choice
-        options:
-          - 'true'
-          - 'false'
-
+        required: false
+        default: 'true'
+        
 jobs:
   test:
     name: test job
     runs-on: ubuntu-latest
     steps:
-      - name: Set Environment variable
+      - name: Set Environment Variables
+        shell: bash
         run: |
+          # Determine if the environment is production
           [ "${{ inputs.Environment }}" == "production" ] && is_production=true || is_production=false
           echo "is_production=${is_production}" >> $GITHUB_ENV
-          
-          [ "${{ inputs.NoExec }}" == "true" ] && noexecchangset=--no-execute-changeset || noexecchangset=
+
+          # Set noexecchangset based on NoExecute input
+          [ "${{ inputs.NoExecute }}" == "true" ] && noexecchangset="--no-execute-changeset" || noexecchangset=""
           echo "noexecchangset=${noexecchangset}" >> $GITHUB_ENV
 
       - name: echo outputs
@@ -35,7 +36,7 @@ jobs:
           echo "${{ inputs.Environment }}"
           echo "inputs is_production"
           echo "${{ inputs.is_production }}"
-          echo "{{ inputs.NoExec }}"
+          echo "{{ inputs.NoExecute }}"
           echo "${{ env.noexechangeset }}"
 
       - name: run PROD command
