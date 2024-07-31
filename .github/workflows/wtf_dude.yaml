@@ -36,3 +36,8 @@ jobs:
         if: env.is_production == 'false'
         run: |
           echo "We hit the NONPROD command"
+
+      - name: set envname
+        run: |
+         [ "${{ env.is_production }} == true ] && envname=legacy-prod || envname=legacy-dev
+         echo "${envname}"
