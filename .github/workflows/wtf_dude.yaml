@@ -9,6 +9,13 @@ on:
           - development
           - staging
           - production
+      NoExec:
+        description: 'True to not execute changeset'
+        type: choice
+          options:
+            - true
+            - false
+        default: 'true'
 
 jobs:
   test:
@@ -19,6 +26,9 @@ jobs:
         run: |
           [ "${{ inputs.Environment }}" == "production" ] && is_production=true || is_production=false
           echo "is_production=${is_production}" >> $GITHUB_ENV
+          
+          [ "${{ inputs.NoExec }}" == "true" ] && noexecchangset=--no-execute-changeset || noexecchangset=
+          echo "noexecchangset${noexecchangset}" >> $GITHUB_ENV
 
       - name: echo outputs
         run: |
@@ -26,6 +36,8 @@ jobs:
           echo "${{ inputs.Environment }}"
           echo "inputs is_production"
           echo "${{ inputs.is_production }}"
+          echo "{{ inputs.NoExec }}"
+          echo "${{ env.noexechangeset }}"
 
       - name: run PROD command
         if: env.is_production == 'true'
