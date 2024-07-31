@@ -24,6 +24,8 @@ jobs:
         run: |
           echo ${{ env.is_production}}
           echo "${{ inputs.Environment }}"
+          echo "inputs is_production"
+          echo "${{ inputs.is_production }}"
 
       - name: run PROD command
         if: env.is_production == 'true'
