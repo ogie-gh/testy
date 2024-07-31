@@ -1,0 +1,26 @@
+Name: If Inputs in Bash
+on:
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description: 'Environment to deploy to'
+        type: choice
+        options:
+          - development
+          - staging
+          - production
+
+jobs:
+  test:
+    name: test job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Test Inputs in bash if
+        shell: bash
+        run: |
+          if [ "${{ inputs.environment }}" == "production" ]; then
+            envname="prod"
+          else
+            envname="nonprod"
+          fi
+          echo "${envname}"
