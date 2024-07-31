@@ -1,4 +1,4 @@
-Name: If Inputs in Bash
+name: If Inputs in Bash
 on:
   workflow_dispatch:
     inputs:
