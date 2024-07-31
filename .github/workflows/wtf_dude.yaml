@@ -26,11 +26,11 @@ jobs:
           echo "${{ inputs.Environment }}"
 
       - name: run PROD command
-        if: ${{ env.is_production }} == true
+        if: "${{ env.is_production }} == true"
         run: |
           echo "We hit the PROD command"
 
       - name: run NONPROD command
-        if: ${{ env.is_production }} == false
+        if: "${{ env.is_production }} == false"
         run: |
           echo "We hit the NONPROD command"
