@@ -24,3 +24,8 @@ jobs:
         run: |
           echo ${{ env.is_production}}
           echo "${{ inputs.Environment }}"
+
+      - name: run command
+        run: |
+          [ "${{ env.is_production } == true ] && envname=legacy-prod || envname=legacy-dev
+          echo "${envname}"
