@@ -36,7 +36,7 @@ jobs:
           echo "${{ inputs.Environment }}"
           echo "inputs is_production"
           echo "${{ inputs.is_production }}"
-          echo "{{ inputs.NoExecute }}"
+          echo "${{ inputs.NoExecute }}"
           echo "${{ env.noexecchangset }}"
 
       - name: run PROD command
