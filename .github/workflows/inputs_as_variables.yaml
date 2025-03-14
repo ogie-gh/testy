@@ -1,4 +1,6 @@
-name: WTFuonAboot
+name: Inputs as Variables
+run-name: InputsasVariables - {{ inputs.Environment }}
+
 on:
   workflow_dispatch:
     inputs:
