@@ -29,3 +29,10 @@ jobs:
           # Set envname variable for cloudformation deploy
           [ "${{ env.is_production }}" == true ] && envname=proddy-prod || envname=proddy-dev
           echo $envname
+
+      - name: Deploy
+        shell: bash
+        run: |
+          [[ "${{ inputs.Environment }}" == ^(staging|production)$ ]] && snapshottag=True || snapshottag=False
+          echo "snapshottag=${snapshottag}" >> $GITHUB_ENV
+          echo $snapshottag
