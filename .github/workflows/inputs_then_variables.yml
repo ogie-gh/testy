@@ -1,0 +1,31 @@
+name: Multiple inputs as variable(s)
+
+on: 
+  workflow_dispatch:
+    inputs:
+      Environment:
+        description: 'Environment to deploy to'
+        type: choice
+        options:
+        - sandbox
+        - development
+        - staging
+        - production
+
+jobs:
+  Deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Environment Variables
+        run: |
+          [ "${{ inputs.Environment }}" == "production" ] && is_production=true || is_production=false
+          echo "is_production=${is_production}" >> $GITHUB_ENV
+          echo $production
+
+      - name: Deploy
+        shell: bash
+        run: |
+          # Set envname variable for cloudformation deploy
+          [ "${{ env.is_production }}" == true ] && envname=pipeline-prod || envname=pipeline-dev
+          echo $envname
