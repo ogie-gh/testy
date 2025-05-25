@@ -38,13 +38,13 @@ jobs:
           echo $snapshot_tag
           echo ${snapshot_tag}
 
-      - name: single brackets
-        shell: bash
-        run: |
-          [ "${{ inputs.Environment }}" =~ ^(staging|production)$ ] && snapshot_tag=True || snapshot_tag=False
-          echo "snapshot_tag=${snapshot_tag}" >> $GITHUB_ENV
-          echo $snapshot_tag
-          echo ${snapshot_tag}
+      # - name: single brackets
+      #   shell: bash
+      #   run: |
+      #     [ "${{ inputs.Environment }}" =~ ^(staging|production)$ ] && snapshot_tag=True || snapshot_tag=False
+      #     echo "snapshot_tag=${snapshot_tag}" >> $GITHUB_ENV
+      #     echo $snapshot_tag
+      #     echo ${snapshot_tag}
 
 
       - name: test case syntax
