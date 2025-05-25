@@ -33,6 +33,7 @@ jobs:
       - name: Deploy
         shell: bash
         run: |
-          [[ "${{ inputs.Environment }}" =~ ^(staging|production)$ ]] && snapshottag=True || snapshottag=False
-          echo "snapshottag=${snapshottag}" >> $GITHUB_ENV
-          echo $snapshottag
+          [[ "${{ inputs.Environment }}" =~ ^(staging|production)$ ]] && snapshot_tag=True || snapshot_tag=False
+          echo "snapshot_tag=${snapshot_tag}" >> $GITHUB_ENV
+          echo $snapshot_tag
+          echo ${snapshot_tag}
