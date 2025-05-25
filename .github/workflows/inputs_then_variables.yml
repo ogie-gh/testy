@@ -21,11 +21,11 @@ jobs:
         run: |
           [ "${{ inputs.Environment }}" == "production" ] && is_production=true || is_production=false
           echo "is_production=${is_production}" >> $GITHUB_ENV
-          echo $production
+          echo $is_production
 
       - name: Deploy
         shell: bash
         run: |
           # Set envname variable for cloudformation deploy
-          [ "${{ env.is_production }}" == true ] && envname=pipeline-prod || envname=pipeline-dev
+          [ "${{ env.is_production }}" == true ] && envname=proddy-prod || envname=proddy-dev
           echo $envname
