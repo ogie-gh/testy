@@ -1,0 +1,40 @@
+name: Print Output across multiple deploy steps
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - account_name: account1
+            account_env: dev
+            region: ap-southeast-2
+          - account_name: account2
+            account_env: prod
+            region: ap-southeast-2
+    outputs:
+      publish-line: ${{ steps.publish.outputs.line }}
+    steps:
+      - id: deploy
+        run: |
+          VERSION=123
+          echo "published layer version $VERSION to account ${{ matrix.account_name }}-${{ matrix.account_env }} in region ${{ matrix.region }}"
+      - id: publish
+        run: |
+          VERSION=123
+          line="published layer version $VERSION to account ${{ matrix.account_name }}-${{ matrix.account_env }} in region ${{ matrix.region }}"
+          echo "line=$line" >> $GITHUB_OUTPUT
+
+  summarize:
+    runs-on: ubuntu-latest
+    needs: deploy
+    steps:
+      - name: Print summary
+        run: |
+          echo "Deployment summary:"
+          for job in ${{ toJson(needs.deploy) }}; do
+            echo $job
+          done
