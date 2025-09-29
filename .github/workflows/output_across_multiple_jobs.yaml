@@ -46,7 +46,9 @@ jobs:
           path: results
 
       - name: check dir layout
-        run: ls -la
+        run: |
+          ls -la
+          ls -la results/
 
       - name: Print deployment results
         run: |
