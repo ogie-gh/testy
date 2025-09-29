@@ -39,6 +39,7 @@ jobs:
 
       - name: check dir layout
         run: |
+          pwd
           ls -la
       
       - name: Upload summary
