@@ -28,6 +28,9 @@ jobs:
             account_env: nonprod
             region: ap-southeast-2
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
       - name: Publish layer
         run: |
           VERSION=123
