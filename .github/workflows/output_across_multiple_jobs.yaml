@@ -36,6 +36,11 @@ jobs:
           VERSION=123
           line="published layer version $VERSION to account ${{ matrix.account_name }}-${{ matrix.account_env }} in region ${{ matrix.region }}"
           echo "$line" | tee result.txt
+
+      - name: check dir layout
+        run: |
+          ls -la
+      
       - name: Upload summary
         uses: actions/upload-artifact@v4
         with:
