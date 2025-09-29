@@ -14,18 +14,27 @@ jobs:
             region: ap-southeast-2
           - account_name: account2
             account_env: prod
+            region: ap-southeast-3
+          - account_name: account2
+            account_env: dev
+            region: ap-southeast-2
+          - account_name: account4
+            account_env: staging
+            region: ap-southeast-2
+          - account_name: account5
+            account_env: nonprod
             region: ap-southeast-2
     steps:
       - name: Publish layer
         run: |
           VERSION=123
           line="published layer version $VERSION to account ${{ matrix.account_name }}-${{ matrix.account_env }} in region ${{ matrix.region }}"
-          echo "$line" | tee summary.txt
+          echo "$line" | tee result.txt
       - name: Upload summary
         uses: actions/upload-artifact@v4
         with:
-          name: summary-${{ matrix.account_name }}-${{ matrix.account_env }}-${{ matrix.region }}
-          path: summary.txt
+          name: result-${{ matrix.account_name }}-${{ matrix.account_env }}-${{ matrix.region }}
+          path: result.txt
 
   summarize:
     runs-on: ubuntu-latest
@@ -34,9 +43,12 @@ jobs:
       - name: Download all summaries
         uses: actions/download-artifact@v4
         with:
-          path: summaries
+          path: results
 
-      - name: Print deployment summary
+      - name: check dir layout
+        run: ls -la
+
+      - name: Print deployment results
         run: |
-          echo "Deployment summary:"
-          cat summaries/*/summary.txt
+          echo "Deployment results:"
+          cat results/*/result.txt
