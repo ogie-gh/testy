@@ -45,7 +45,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: result-${{ matrix.account_name }}-${{ matrix.account_env }}-${{ matrix.region }}
-          path: result.txt
+          path: aws/lambda/layers/result.txt
 
   summarize:
     runs-on: ubuntu-latest
