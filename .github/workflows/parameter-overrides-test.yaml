@@ -1,0 +1,26 @@
+name: Deploy One-Off AWS CloudFormation Template
+on:
+  workflow_dispatch:
+    inputs:
+      parameter-overrides:
+        description: "Optional parameter overrides in 'Key=Value' format separated by spaces"
+        required: false
+        default: ""
+
+jobs:
+  test:
+    name: test job
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Environment Variables
+        shell: bash
+        run: |
+          # Prepare parameter overrides if any
+          if [ -z "${{ github.event.inputs.parameter-overrides }}" ];
+            then
+              parameter_overrides="--parameter-overrides ${{ github.event.inputs.parameter-overrides }}" >> $GITHUB_ENV
+          fi
+
+      - name: echo outputs
+        run: |
+          echo $parameter_overrides
