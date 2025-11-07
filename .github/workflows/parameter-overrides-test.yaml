@@ -1,4 +1,4 @@
-name: Deploy One-Off AWS CloudFormation Template
+name: Parameter Overrides input 
 on:
   workflow_dispatch:
     inputs:
