@@ -16,7 +16,7 @@ jobs:
         shell: bash
         run: |
           # Prepare parameter overrides if any
-          if [ -z "${{ github.event.inputs.parameter-overrides }}" ];
+          if [ -n "${{ github.event.inputs.parameter-overrides }}" ];
             then
               parameter_overrides="--parameter-overrides ${{ github.event.inputs.parameter-overrides }}" >> $GITHUB_ENV
           fi
