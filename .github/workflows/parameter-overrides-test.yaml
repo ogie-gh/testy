@@ -18,7 +18,7 @@ jobs:
           # Prepare parameter overrides if any
           if [ -n "${{ github.event.inputs.parameter-overrides }}" ];
             then
-              parameter_overrides="--parameter-overrides ${{ github.event.inputs.parameter-overrides }}" >> $GITHUB_ENV
+              echo "parameter_overrides=--parameter-overrides ${{ github.event.inputs.parameter-overrides }}" >> $GITHUB_ENV
           fi
 
       - name: echo outputs
